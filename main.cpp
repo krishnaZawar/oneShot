@@ -3,6 +3,7 @@
 #include "player.cpp"
 #include "enemyManager.cpp"
 #include "scoreManager.cpp"
+#include "powerUpsManager.cpp"
 
 #include<string>
 #include<vector>
@@ -17,6 +18,7 @@ int main(){
     Player player;
     ScoreManager scoreManager;
     EnemyManager enemyManager;
+    PowerUpsManager powerUpsManager;
 
     // build walls
     std::vector<Rectangle>  walls;
@@ -34,6 +36,7 @@ int main(){
         // update functions
         player.update();
         enemyManager.update();
+        powerUpsManager.update();
 
         // enemy follow
         Vector2 curPlayerPosition = player.getPosition();
@@ -50,6 +53,7 @@ int main(){
             // handle enemy death on being shot
             if(!player.isLoaded()){
                 if(enemyManager.enemies[i].collidedWith(player.getBullet().getRectElement())){
+                    powerUpsManager.addPowerUp(enemyManager.enemies[i].getPosition());
                     enemyManager.enemies.erase(enemyManager.enemies.begin() + i);
                     i--;
                     scoreManager.incrementScore();
@@ -57,6 +61,14 @@ int main(){
             }
         }
 
+        // handle powerUps
+        for(int i = 0; i < (int)powerUpsManager.powerUps.size(); i++){
+            if(CheckCollisionRecs(player.getRectElement(), powerUpsManager.powerUps[i].getRectElement())){
+                powerUpsManager.powerUps.erase(powerUpsManager.powerUps.begin() + i);
+                i--;
+                player.load();
+            }
+        }
 
         //-----------------------------------------------------game rendering-------------------------------------------------------------------
         BeginDrawing();
@@ -66,6 +78,10 @@ int main(){
             
             for(Enemy &enemy : enemyManager.enemies){
                 enemy.draw();
+            }
+
+            for(ReloadPowerUp    &powerUp : powerUpsManager.powerUps){
+                powerUp.draw();
             }
 
             for(Rectangle& wall : walls){

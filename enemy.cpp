@@ -62,4 +62,8 @@ class Enemy{
         bool collidedWith(Rectangle rect){
             return CheckCollisionRecs(rect, Rectangle(position.x, position.y, size, size));
         }
+
+        Vector2 getPosition(){
+            return position;
+        }
 };

@@ -131,9 +131,6 @@ class Player{
             loaded = false;
         }
         void load(){
-            if(!CheckCollisionRecs(Rectangle(position.x, position.y, size, size), bullet.getRectElement())){
-                return;
-            }
             bullet.setActive(false);
             loaded = true;
             reloadTimeLeft = reloadTime;
@@ -157,7 +154,9 @@ class Player{
                 bullet.update();
                 reloadTimeLeft -= (1.0 / GetFPS());
                 if(reloadTimeLeft < 0){
-                    load();
+                    if(CheckCollisionRecs(Rectangle(position.x, position.y, size, size), bullet.getRectElement())){
+                        load();
+                    }
                 }
             }
         }
