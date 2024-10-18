@@ -99,6 +99,10 @@ class Player{
             }
         }
 
+        void setPosition(Vector2 position){
+            this->position = position;
+        }
+
         Vector2 getDirection(){
              /*
                 calculating direction of firing
@@ -132,6 +136,7 @@ class Player{
         }
         void load(){
             bullet.setActive(false);
+
             loaded = true;
             reloadTimeLeft = reloadTime;
         }
@@ -145,11 +150,6 @@ class Player{
         void update(){
             updatePosition();
 
-            if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
-                if(isLoaded()){
-                    shoot();
-                }
-            }
             if(!isLoaded()){
                 bullet.update();
                 reloadTimeLeft -= (1.0 / GetFPS());

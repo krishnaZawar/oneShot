@@ -36,10 +36,10 @@ class Bullet{
            position.x += (speed*direction.x*dt);
            position.y += (speed*direction.y*dt);
 
-           if(position.x < wallWidth || position.x > screenWidth - wallWidth - bulletSize){
+           if(position.x <= wallWidth || position.x >= screenWidth - wallWidth - bulletSize){
                 direction.x *= -1;
            }
-           if(position.y < wallWidth || position.y > screenHeight - wallWidth - bulletSize){
+           if(position.y <= wallWidth || position.y >= screenHeight - wallWidth - bulletSize){
                 direction.y *= -1;
            }
         }

@@ -6,3 +6,6 @@
 
 #define playerColor RED
 #define enemyColor BLUE
+
+#define buttonWidth 225
+#define buttonHeight 75

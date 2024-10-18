@@ -15,8 +15,18 @@ class ScoreManager{
             score++;
         }
 
-        void draw(){
-            DrawText("score: ", 10, 10, 20, WHITE);
-            DrawText(std::to_string(score).c_str(), 100, 10, 20, WHITE);
+        void reset(){
+            score = 0;
+        }
+
+        void draw(Vector2 pos, int font, Color color){
+            int offset;
+            if(font <= 20){
+                offset = 100;
+            }else{
+                offset = 120;
+            }
+            DrawText("score : ", pos.x, pos.y, font, color);
+            DrawText(std::to_string(score).c_str(), pos.x + offset, pos.y, font, color);
         }
 };
