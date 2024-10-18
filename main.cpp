@@ -197,7 +197,7 @@ int main(){
     showScorePage = true;
 
     // init page
-    playButton.setText("Replay");
+    playButton.setText("Play again");
     playButton.setSize(buttonWidth, buttonHeight);
     homeButton.setSize(buttonWidth, buttonHeight);
     exitButton.setSize(buttonWidth, buttonHeight);
@@ -239,7 +239,7 @@ int main(){
 
             DrawText("You Died.", 375, 75, 70, BLACK);
             scoreManager.draw(Vector2(425, 175), 30, BLACK);
-            playButton.Draw(Vector2(400, 250), Vector2(460, 275));
+            playButton.Draw(Vector2(400, 250), Vector2(440, 275));
             homeButton.Draw(Vector2(400, 350), Vector2(475, 375));
             exitButton.Draw(Vector2(400, 450), Vector2(475, 475));
         EndDrawing();
